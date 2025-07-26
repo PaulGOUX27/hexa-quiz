@@ -1,0 +1,14 @@
+{
+  "name": "hexa-quiz",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+}
