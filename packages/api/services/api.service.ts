@@ -1,16 +1,6 @@
-"use strict";
+import ApiGateway from "moleculer-web";
 
-const ApiGateway = require("moleculer-web");
-
-/**
- * @typedef {import('moleculer').ServiceSchema} ServiceSchema Moleculer's Service Schema
- * @typedef {import('moleculer').Context} Context Moleculer's Context
- * @typedef {import('http').IncomingMessage} IncomingRequest Incoming HTTP Request
- * @typedef {import('http').ServerResponse} ServerResponse HTTP Server Response
- * @typedef {import('moleculer-web').ApiSettingsSchema} ApiSettingsSchema API Setting Schema
- */
-
-module.exports = {
+export default {
 	name: "api",
 	mixins: [ApiGateway],
 
@@ -107,18 +97,15 @@ module.exports = {
 		// Logging the response data. Set to any log level to enable it. E.g. "info"
 		logResponseData: null,
 
-
 		// Serve assets from "public" folder. More info: https://moleculer.services/docs/0.14/moleculer-web.html#Serve-static-files
 		assets: {
 			folder: "public",
-
 			// Options to `server-static` module
 			options: {}
 		}
 	},
 
 	methods: {
-
 		/**
 		 * Authenticate the request. It check the `Authorization` token value in the request header.
 		 * Check the token value & resolve the user by the token.
@@ -145,7 +132,7 @@ module.exports = {
 
 				} else {
 					// Invalid token
-					throw new ApiGateway.Errors.UnAuthorizedError(ApiGateway.Errors.ERR_INVALID_TOKEN);
+					throw new ApiGateway.Errors.UnAuthorizedError(ApiGateway.Errors.ERR_INVALID_TOKEN, {});
 				}
 
 			} else {
@@ -171,9 +158,28 @@ module.exports = {
 
 			// It check the `auth` property in action schema.
 			if (req.$action.auth == "required" && !user) {
-				throw new ApiGateway.Errors.UnAuthorizedError("NO_RIGHTS");
+				throw new ApiGateway.Errors.UnAuthorizedError("NO_RIGHTS", {});
 			}
 		}
+	},
 
-	}
+	/**
+	 * Service created lifecycle event handler
+	 */
+	created() {
+		console.log("Api service created")
+	},
+
+	/**
+	 * Service started lifecycle event handler
+	 */
+	started() {
+		console.log("Api service started")
+	},
+
+	/**
+	 * Service stopped lifecycle event handler
+	 */
+	stopped() {
+		console.log("Api service stopped")}
 };
