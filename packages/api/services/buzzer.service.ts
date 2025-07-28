@@ -1,5 +1,5 @@
-import {Context} from "moleculer";
-import {BuzParams, ResetParams, Team} from "./types";
+import { Context } from "moleculer";
+import { BuzParams, ResetParams, Team } from "./types";
 
 let actualTeam: Team | null = null;
 
@@ -8,7 +8,7 @@ export default {
 	version: 1,
 
 	settings: {
-		rest: "/buzzer"
+		rest: "/buzzer",
 	},
 
 	actions: {
@@ -20,16 +20,17 @@ export default {
 					return;
 				}
 
-				actualTeam = ctx.params.team
-			}
+				actualTeam = ctx.params.team;
+			},
 		},
 
 		reset: {
 			visibility: "published",
 			rest: "POST /reset",
+			// eslint-disable-next-line @typescript-eslint/no-unused-vars
 			async handler(ctx: Context<ResetParams>) {
-				actualTeam = null
-			}
-		}
-	}
-}
+				actualTeam = null;
+			},
+		},
+	},
+};

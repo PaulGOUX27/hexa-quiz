@@ -8,7 +8,7 @@
     "cli": "moleculer connect TCP",
     "ci": "jest --watch",
     "test": "jest --coverage",
-    "lint": "eslint services"
+    "lint": "eslint ."
   },
   "keywords": [
     "microservices",
@@ -16,11 +16,18 @@
   ],
   "author": "",
   "devDependencies": {
-    "eslint": "^8.25.0",
+    "@eslint/js": "^9.32.0",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.3",
+    "globals": "^16.3.0",
     "jest": "^27.5.1",
     "jest-cli": "^27.5.1",
     "moleculer-repl": "^0.7.3",
-    "ts-node": "^10.9.2"
+    "prettier": "3.6.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.38.0"
   },
   "dependencies": {
     "moleculer": "^0.14.26",

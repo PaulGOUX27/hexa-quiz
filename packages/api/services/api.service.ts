@@ -19,9 +19,7 @@ export default {
 			{
 				path: "/api",
 
-				whitelist: [
-					"**"
-				],
+				whitelist: ["**"],
 
 				// Route-level Express middlewares. More info: https://moleculer.services/docs/0.14/moleculer-web.html#Middlewares
 				use: [],
@@ -39,9 +37,7 @@ export default {
 				// The gateway will dynamically build the full routes from service schema.
 				autoAliases: true,
 
-				aliases: {
-
-				},
+				aliases: {},
 
 				/**
 				 * Before call hook. You can check the request.
@@ -74,20 +70,20 @@ export default {
 				bodyParsers: {
 					json: {
 						strict: false,
-						limit: "1MB"
+						limit: "1MB",
 					},
 					urlencoded: {
 						extended: true,
-						limit: "1MB"
-					}
+						limit: "1MB",
+					},
 				},
 
 				// Mapping policy setting. More info: https://moleculer.services/docs/0.14/moleculer-web.html#Mapping-policy
 				mappingPolicy: "all", // Available values: "all", "restrict"
 
 				// Enable/disable logging
-				logging: true
-			}
+				logging: true,
+			},
 		],
 
 		// Do not log client side errors (does not log an error response when the error.code is 400<=X<500)
@@ -100,12 +96,9 @@ export default {
 
 	methods: {
 		async authenticate() {
-					return { id: 1, name: "John Doe" };
-
+			return { id: 1, name: "John Doe" };
 		},
 
-		async authorize() {
-
-		}
+		async authorize() {},
 	},
 };

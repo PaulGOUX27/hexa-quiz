@@ -1,10 +1,10 @@
 export enum Team {
-	BLUE ="blue",
-	RED="red"
+	BLUE = "blue",
+	RED = "red",
 }
 
 export type BuzParams = {
-	team: Team
-}
+	team: Team;
+};
 
-export type ResetParams = void
+export type ResetParams = void;
