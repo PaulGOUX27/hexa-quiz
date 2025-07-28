@@ -99,33 +99,13 @@ export default {
 	},
 
 	methods: {
-		async authenticate(ctx, route, req) {
+		async authenticate() {
 					return { id: 1, name: "John Doe" };
 
 		},
 
-		async authorize(ctx, route, req) {
+		async authorize() {
 
 		}
 	},
-
-	/**
-	 * Service created lifecycle event handler
-	 */
-	created() {
-		console.log("Api service created")
-	},
-
-	/**
-	 * Service started lifecycle event handler
-	 */
-	started() {
-		console.log("Api service started")
-	},
-
-	/**
-	 * Service stopped lifecycle event handler
-	 */
-	stopped() {
-		console.log("Api service stopped")}
 };

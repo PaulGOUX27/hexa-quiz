@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "My Moleculer-based microservices project",
   "scripts": {
-    "dev": "moleculer-runner --hot services/*",
+    "dev": "ts-node ./node_modules/moleculer/bin/moleculer-runner.js --hot services/*.service.ts",
     "start": "moleculer-runner",
     "cli": "moleculer connect TCP",
     "ci": "jest --watch",
@@ -19,12 +19,12 @@
     "eslint": "^8.25.0",
     "jest": "^27.5.1",
     "jest-cli": "^27.5.1",
-    "moleculer-repl": "^0.7.3"
+    "moleculer-repl": "^0.7.3",
+    "ts-node": "^10.9.2"
   },
   "dependencies": {
     "moleculer": "^0.14.26",
-    "moleculer-web": "^0.10.4",
-    "socket.io": "^4.8.1"
+    "moleculer-web": "^0.10.4"
   },
   "engines": {
     "node": ">= 16.x.x"
