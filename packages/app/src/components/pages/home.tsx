@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./home.css";
 import { useWebSocket } from "../../contexts/web-socket.ts";
-import type { ScoreResponse } from "api/src/types.ts";
+import type { BuzResponse, ScoreResponse, TeamEnum } from "api/src/types.ts";
 
 /* TODO
       Add a mode to switch between score and QRcode
@@ -9,6 +9,7 @@ import type { ScoreResponse } from "api/src/types.ts";
 export function Home() {
   const [redScore, setRedScore] = useState(0);
   const [blueScore, setBlueScore] = useState(0);
+  const [actualTeam, setActualTeam] = useState<TeamEnum | null>(null);
   const { send, addListener } = useWebSocket();
 
   useEffect(() => {
@@ -25,13 +26,23 @@ export function Home() {
     });
   }, [addListener]);
 
+  useEffect(() => {
+    return addListener("buzResponse", (response: BuzResponse) => {
+      setActualTeam(response.team);
+    });
+  }, [addListener]);
+
   return (
     <div className="score-panel-root">
-      <div className="score-panel score-panel-red">
+      <div
+        className={`score-panel ${actualTeam === "red" && "score-panel-red"}`}
+      >
         <span className="score">{redScore}</span>
       </div>
 
-      <div className="score-panel score-panel-blue">
+      <div
+        className={`score-panel ${actualTeam === "blue" && "score-panel-blue"}`}
+      >
         <span className="score">{blueScore}</span>
       </div>
     </div>

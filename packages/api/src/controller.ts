@@ -48,7 +48,10 @@ export class Controller {
 				}
 				case "resetBuzzer":
 					this.assertIsAdmin(ws);
-					this.party.resetBuzzer();
+					this.communicator.sendToAdmin({
+						type: "buzResponse",
+						team: this.party.resetBuzzer(),
+					});
 					break;
 				case "registerAdmin":
 					if (!this.adminWs) {

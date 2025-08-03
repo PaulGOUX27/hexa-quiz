@@ -18,9 +18,10 @@ export class Party {
 		return false;
 	}
 
-	public resetBuzzer() {
+	public resetBuzzer(): TeamEnum | null {
 		console.log("Reset buzzer");
 		this.actualTeam = null;
+		return this.actualTeam;
 	}
 
 	public score(team: TeamEnum, value: number): number {
