@@ -42,7 +42,7 @@ export function WebSocketContextProvider({ children }: PropsWithChildren) {
   );
 
   useEffect(() => {
-    const _ws = new WebSocket("ws://localhost:8080");
+    const _ws = new WebSocket(`ws://${import.meta.env.VITE_LOCAL_IP}:8080`);
     ws.current = _ws;
 
     const onOpen = () => {

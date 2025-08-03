@@ -5,8 +5,8 @@ import {
   Outlet,
   RouterProvider,
 } from "@tanstack/react-router";
-import { Home } from "./components/pages/home.tsx";
-import { Buzzer } from "./components/pages/buzzer.tsx";
+import { Home } from "./pages/home.tsx";
+import { Buzzer } from "./pages/buzzer.tsx";
 import { z } from "zod";
 import { TeamEnumSchema } from "api/src/types.ts";
 

@@ -1,20 +1,15 @@
 import { useEffect, useState } from "react";
-import "./home.css";
-import { useWebSocket } from "../../contexts/web-socket.ts";
+import { useWebSocket } from "../contexts/web-socket.ts";
 import type { BuzResponse, ScoreResponse, TeamEnum } from "api/src/types.ts";
+import "../pages/home.css";
+import { useKeyboardListener } from "../hooks/keyboard-listener.tsx";
 
-/* TODO
-      Add a mode to switch between score and QRcode
- */
-export function Home() {
+export function Scores() {
+  const { send, addListener } = useWebSocket();
+
   const [redScore, setRedScore] = useState(0);
   const [blueScore, setBlueScore] = useState(0);
   const [actualTeam, setActualTeam] = useState<TeamEnum | null>(null);
-  const { send, addListener } = useWebSocket();
-
-  useEffect(() => {
-    send({ type: "registerAdmin" });
-  }, [send]);
 
   useEffect(() => {
     return addListener("scoreResponse", (response: ScoreResponse) => {
@@ -31,6 +26,20 @@ export function Home() {
       setActualTeam(response.team);
     });
   }, [addListener]);
+
+  useKeyboardListener("r", () => send({ type: "resetBuzzer" }));
+  useKeyboardListener("a", () =>
+    send({ type: "score", team: "red", value: 1 }),
+  );
+  useKeyboardListener("q", () =>
+    send({ type: "score", team: "red", value: -1 }),
+  );
+  useKeyboardListener("z", () =>
+    send({ type: "score", team: "blue", value: 1 }),
+  );
+  useKeyboardListener("s", () =>
+    send({ type: "score", team: "blue", value: -1 }),
+  );
 
   return (
     <div className="score-panel-root">

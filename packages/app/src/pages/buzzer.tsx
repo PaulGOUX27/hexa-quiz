@@ -1,6 +1,6 @@
 import "./buzzer.css";
 import { getRouteApi } from "@tanstack/react-router";
-import { useWebSocket } from "../../contexts/web-socket.ts";
+import { useWebSocket } from "../contexts/web-socket.ts";
 
 const route = getRouteApi("/buzzer");
 
