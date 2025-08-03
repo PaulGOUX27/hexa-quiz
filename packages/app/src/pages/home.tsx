@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "./home.css";
 import { useWebSocket } from "../contexts/web-socket.ts";
 import { Scores } from "../components/scores.tsx";
 import { QrCodes } from "../components/qr-codes.tsx";

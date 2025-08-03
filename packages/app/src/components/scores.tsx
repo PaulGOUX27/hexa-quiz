@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useWebSocket } from "../contexts/web-socket.ts";
 import type { BuzResponse, ScoreResponse, TeamEnum } from "api/src/types.ts";
-import "../pages/home.css";
 import { useKeyboardListener } from "../hooks/keyboard-listener.tsx";
+import { TeamBackground } from "./team-background.tsx";
 
 export function Scores() {
   const { send, addListener } = useWebSocket();
@@ -42,18 +42,11 @@ export function Scores() {
   );
 
   return (
-    <div className="score-panel-root">
-      <div
-        className={`score-panel ${actualTeam === "red" && "score-panel-red"}`}
-      >
-        <span className="score">{redScore}</span>
-      </div>
-
-      <div
-        className={`score-panel ${actualTeam === "blue" && "score-panel-blue"}`}
-      >
-        <span className="score">{blueScore}</span>
-      </div>
-    </div>
+    <TeamBackground
+      isBlueActive={actualTeam === "blue"}
+      blueChildren={<span className="score">{blueScore}</span>}
+      isRedActive={actualTeam === "red"}
+      redChildren={<span className="score">{redScore}</span>}
+    />
   );
 }

@@ -8,8 +8,14 @@
 .score-panel {
   width: 50%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.team-name {
+  font-size: 4rem;
+  line-height: 1;
 }
 
 .score-panel-red {

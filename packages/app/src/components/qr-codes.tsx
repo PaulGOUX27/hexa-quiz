@@ -1,20 +1,21 @@
 import { QRCodeSVG } from "qrcode.react";
-import "../pages/home.css";
+import { TeamBackground } from "./team-background.tsx";
 
 export function QrCodes() {
   return (
-    <div className="score-panel-root">
-      <div className={`score-panel score-panel-red`}>
-        <QRCodeSVG
-          value={`http://${import.meta.env.VITE_LOCAL_IP}:5173/buzzer?team=red`}
-        />
-      </div>
-
-      <div className={`score-panel score-panel-blue`}>
+    <TeamBackground
+      isBlueActive={true}
+      blueChildren={
         <QRCodeSVG
           value={`http://${import.meta.env.VITE_LOCAL_IP}:5173/buzzer?team=blue`}
         />
-      </div>
-    </div>
+      }
+      isRedActive={true}
+      redChildren={
+        <QRCodeSVG
+          value={`http://${import.meta.env.VITE_LOCAL_IP}:5173/buzzer?team=red`}
+        />
+      }
+    />
   );
 }
