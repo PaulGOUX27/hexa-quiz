@@ -5,15 +5,16 @@ import {
   Outlet,
   RouterProvider,
 } from "@tanstack/react-router";
+import { Home } from "./components/pages/home.tsx";
 
 const rootRoot = createRootRoute({
   component: () => <Outlet />,
 });
 
-const indexRoute = createRoute({
+const homeRoute = createRoute({
   getParentRoute: () => rootRoot,
   path: "/",
-  component: () => <div>Index !</div>,
+  component: () => <Home />,
 });
 
 const buzzerRoute = createRoute({
@@ -23,7 +24,7 @@ const buzzerRoute = createRoute({
   component: () => <div>Buzzer !</div>,
 });
 
-const routeTree = rootRoot.addChildren([indexRoute, buzzerRoute]);
+const routeTree = rootRoot.addChildren([homeRoute, buzzerRoute]);
 
 const router = createRouter({ routeTree });
 
