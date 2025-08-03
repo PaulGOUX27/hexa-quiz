@@ -6,6 +6,9 @@ import {
   RouterProvider,
 } from "@tanstack/react-router";
 import { Home } from "./components/pages/home.tsx";
+import { Buzzer } from "./components/pages/buzzer.tsx";
+import { z } from "zod";
+import { TeamEnumSchema } from "api/src/types.ts";
 
 const rootRoot = createRootRoute({
   component: () => <Outlet />,
@@ -17,11 +20,15 @@ const homeRoute = createRoute({
   component: () => <Home />,
 });
 
+const BuzzerSearchSchema = z.object({
+  team: TeamEnumSchema,
+});
+
 const buzzerRoute = createRoute({
   getParentRoute: () => rootRoot,
   path: "/buzzer",
-  // TODO add params
-  component: () => <div>Buzzer !</div>,
+  validateSearch: BuzzerSearchSchema,
+  component: () => <Buzzer />,
 });
 
 const routeTree = rootRoot.addChildren([homeRoute, buzzerRoute]);

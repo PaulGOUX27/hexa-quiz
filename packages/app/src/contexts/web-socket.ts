@@ -11,6 +11,6 @@ export type WebSocketContext = {
 
 export const WebSocketContext = createContext<WebSocketContext>(undefined!);
 
-export const useWebSocketContext = (): WebSocketContext => {
+export const useWebSocket = (): WebSocketContext => {
   return useContext(WebSocketContext);
 };

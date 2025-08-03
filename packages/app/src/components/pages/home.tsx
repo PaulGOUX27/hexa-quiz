@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./home.css";
-import { useWebSocketContext } from "../../contexts/web-socket.ts";
+import { useWebSocket } from "../../contexts/web-socket.ts";
 import type { ScoreResponse } from "api/src/types.ts";
 
 /* TODO
@@ -9,7 +9,7 @@ import type { ScoreResponse } from "api/src/types.ts";
 export function Home() {
   const [redScore, setRedScore] = useState(0);
   const [blueScore, setBlueScore] = useState(0);
-  const { send, addListener } = useWebSocketContext();
+  const { send, addListener } = useWebSocket();
 
   useEffect(() => {
     send({ type: "registerAdmin" });
