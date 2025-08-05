@@ -3,6 +3,7 @@ import { useWebSocket } from "../contexts/web-socket.ts";
 import type { BuzResponse, ScoreResponse, TeamEnum } from "api/src/types.ts";
 import { useKeyboardListener } from "../hooks/keyboard-listener.tsx";
 import { TeamBackground } from "./team-background.tsx";
+import { SoundContextProvider } from "../contexts/sound-context-provider.tsx";
 
 export function Scores() {
   const { send, addListener } = useWebSocket();
@@ -42,11 +43,13 @@ export function Scores() {
   );
 
   return (
-    <TeamBackground
-      isBlueActive={actualTeam === "blue"}
-      blueChildren={<span className="score">{blueScore}</span>}
-      isRedActive={actualTeam === "red"}
-      redChildren={<span className="score">{redScore}</span>}
-    />
+    <SoundContextProvider>
+      <TeamBackground
+        isBlueActive={actualTeam === "blue"}
+        blueChildren={<span className="score">{blueScore}</span>}
+        isRedActive={actualTeam === "red"}
+        redChildren={<span className="score">{redScore}</span>}
+      />
+    </SoundContextProvider>
   );
 }

@@ -12,6 +12,12 @@ dist
 dist-ssr
 *.local
 
+# Ignore sound files, but keep the folder structure
+public/sounds/*
+!public/sounds/teams
+public/sounds/teams/*
+!public/sounds/teams/.gitkeep
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
