@@ -9,6 +9,7 @@ import { Home } from "./pages/home.tsx";
 import { Buzzer } from "./pages/buzzer.tsx";
 import { z } from "zod";
 import { TeamEnumSchema } from "api/src/types.ts";
+import { Admin } from "./pages/admin.tsx";
 
 const rootRoot = createRootRoute({
   component: () => <Outlet />,
@@ -31,7 +32,13 @@ const buzzerRoute = createRoute({
   component: () => <Buzzer />,
 });
 
-const routeTree = rootRoot.addChildren([homeRoute, buzzerRoute]);
+const adminRoutes = createRoute({
+  getParentRoute: () => rootRoot,
+  path: "/admin",
+  component: () => <Admin />,
+});
+
+const routeTree = rootRoot.addChildren([homeRoute, buzzerRoute, adminRoutes]);
 
 const router = createRouter({ routeTree });
 

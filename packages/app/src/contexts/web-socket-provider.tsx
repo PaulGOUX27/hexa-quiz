@@ -12,7 +12,13 @@ export function WebSocketContextProvider({ children }: PropsWithChildren) {
   const ws = useRef<WebSocket | null>(null);
   const listeners = useRef<
     Record<Response["type"], ((response: Response) => void)[]>
-  >({ buzResponse: [], scoreResponse: [] });
+  >({
+    buzResponse: [],
+    scoreResponse: [],
+    "song:pause": [],
+    "song:play": [],
+    "song:resume": [],
+  });
   const pendingMessages = useRef<Message[]>([]);
 
   const send: WebSocketContext["send"] = useCallback((message: Message) => {

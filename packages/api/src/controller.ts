@@ -4,17 +4,10 @@ import { WebSocket } from "ws";
 import { Communicator } from "./communicator";
 
 export class Controller {
-	private adminWs: WebSocket | null = null;
 	constructor(
 		private party: Party,
 		private communicator: Communicator,
 	) {}
-
-	private assertIsAdmin(ws: WebSocket) {
-		if (this.adminWs !== ws) {
-			throw new Error("Not the admin");
-		}
-	}
 
 	public handleMessage(message: unknown, { ws }: { ws: WebSocket }) {
 		const parsedData = MessageSchema.safeParse(message);
@@ -23,23 +16,23 @@ export class Controller {
 			return;
 		}
 		try {
+			console.log(parsedData.data.type + " event received");
 			switch (parsedData.data.type) {
 				case "buz":
 					if (this.party.buz(parsedData.data.team)) {
 						// Play sound
-						this.communicator.sendToAdmin({
+						this.communicator.sendToMainScreen({
 							type: "buzResponse",
 							team: parsedData.data.team,
 						});
 					}
 					break;
 				case "score": {
-					this.assertIsAdmin(ws);
 					const value = this.party.score(
 						parsedData.data.team,
 						parsedData.data.value,
 					);
-					this.communicator.sendToAdmin({
+					this.communicator.sendToMainScreen({
 						type: "scoreResponse",
 						team: parsedData.data.team,
 						value,
@@ -47,17 +40,18 @@ export class Controller {
 					break;
 				}
 				case "resetBuzzer":
-					this.assertIsAdmin(ws);
-					this.communicator.sendToAdmin({
+					this.communicator.sendToMainScreen({
 						type: "buzResponse",
 						team: this.party.resetBuzzer(),
 					});
 					break;
-				case "registerAdmin":
-					if (!this.adminWs) {
-						this.adminWs = ws;
-						this.communicator.adminWs = ws;
-					}
+				case "registerMainScreen":
+					this.communicator.mainScreenWs = ws;
+					break;
+				case "song:pause":
+				case "song:play":
+				case "song:resume":
+					this.communicator.sendToMainScreen(parsedData.data);
 					break;
 				default:
 					console.warn("Unknown message type", parsedData.data);

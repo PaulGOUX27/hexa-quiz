@@ -2,18 +2,18 @@ import { WebSocket } from "ws";
 import { Response } from "./types";
 
 export class Communicator {
-	private _adminWs: WebSocket | null = null;
+	private _mainScreenWs: WebSocket | null = null;
 
-	set adminWs(value: WebSocket | null) {
-		this._adminWs = value;
+	set mainScreenWs(value: WebSocket | null) {
+		this._mainScreenWs = value;
 	}
 
-	public sendToAdmin(message: Response) {
-		if (!this._adminWs) {
+	public sendToMainScreen(message: Response) {
+		if (!this._mainScreenWs) {
 			console.error(
-				"No admin WebSocket set in communicator, no message sent",
+				"No main screen WebSocket set in communicator, no message sent",
 			);
 		}
-		this._adminWs.send(JSON.stringify(message));
+		this._mainScreenWs.send(JSON.stringify(message));
 	}
 }
