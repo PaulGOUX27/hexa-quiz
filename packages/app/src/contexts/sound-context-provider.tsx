@@ -25,8 +25,12 @@ export function SoundContextProvider({ children }: PropsWithChildren) {
     });
   }, [addListener]);
 
+  // TODO add song:stop
+  // TODO add score on mobile
+
   useEffect(() => {
     return addListener("song:play", async ({ title }) => {
+      songAudio.current?.pause();
       songAudio.current = new Audio(path.join("/sounds", title));
       await songAudio.current.play();
     });
