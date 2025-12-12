@@ -4,6 +4,12 @@
     gap: 16px
 }
 
+@media (max-width: 600px) {
+    .song-container {
+        flex-direction: column;
+    }
+}
+
 .song-list {
     width: fit-content;
 }
@@ -19,4 +25,17 @@
     flex-grow: 1;
     align-items: start;
     padding: 24px;
+}
+
+.button-team-blue {
+    background-color: var(--blue-lighter);
+}
+.button-team-blue:hover {
+    background-color: var(--blue);
+}
+.button-team-red {
+    background-color: var(--red-lighter);
+}
+.button-team-red:hover {
+    background-color: var(--red-light);
 }

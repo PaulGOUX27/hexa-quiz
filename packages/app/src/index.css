@@ -55,7 +55,7 @@ h1 {
 
 button {
   border-radius: 8px;
-  padding: 8px;
+  padding: 16px;
   min-width: 100px;
   border: 1px solid var(--gray-dark);
   background-color: var(--gray-lighter);

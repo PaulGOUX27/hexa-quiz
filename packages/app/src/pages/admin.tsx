@@ -2,6 +2,7 @@ import { useWebSocket } from "../contexts/web-socket.ts";
 import { useCallback } from "react";
 import "./admin.css";
 import { AdminContextProvider } from "../contexts/admin-context-provider.tsx";
+import type { TeamEnum } from "api/src/types.ts";
 
 function Song({
   play,
@@ -41,6 +42,13 @@ export function Admin() {
     send({ type: "song:stop" });
   }, [send]);
 
+  const score = useCallback(
+    (team: TeamEnum, value: 1 | -1) => {
+      send({ type: "score", team, value });
+    },
+    [send],
+  );
+
   return (
     <AdminContextProvider>
       <div className="song-container">
@@ -53,6 +61,25 @@ export function Admin() {
           <button onClick={pause}>Pause ⏸</button>
           <button onClick={resume}>Resume ▶</button>
           <button onClick={stop}>Stop ⏹</button>
+        </div>
+        <div className="button-container">
+          <button className="button-team-red" onClick={() => score("red", 1)}>
+            Red +1
+          </button>
+          <button className="button-team-red" onClick={() => score("red", -1)}>
+            Red -1
+          </button>
+        </div>
+        <div className="button-container">
+          <button className="button-team-blue" onClick={() => score("blue", 1)}>
+            Blue +1
+          </button>
+          <button
+            className="button-team-blue"
+            onClick={() => score("blue", -1)}
+          >
+            Blue -1
+          </button>
         </div>
       </div>
     </AdminContextProvider>
