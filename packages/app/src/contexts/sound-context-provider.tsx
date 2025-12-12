@@ -25,8 +25,6 @@ export function SoundContextProvider({ children }: PropsWithChildren) {
     });
   }, [addListener]);
 
-  // TODO add score on mobile
-
   useEffect(() => {
     return addListener("song:play", async ({ title }) => {
       songAudio.current?.pause();
