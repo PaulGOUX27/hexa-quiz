@@ -9,6 +9,10 @@ export class Controller {
 		private communicator: Communicator,
 	) {}
 
+	public registerWebSocket(webSocket: WebSocket) {
+		this.communicator.registerWebSocket(webSocket);
+	}
+
 	public handleMessage(message: unknown, { ws }: { ws: WebSocket }) {
 		const parsedData = MessageSchema.safeParse(message);
 		if (parsedData.error) {
@@ -32,7 +36,7 @@ export class Controller {
 						parsedData.data.team,
 						parsedData.data.value,
 					);
-					this.communicator.sendToMainScreen({
+					this.communicator.broadcast({
 						type: "scoreResponse",
 						team: parsedData.data.team,
 						value,

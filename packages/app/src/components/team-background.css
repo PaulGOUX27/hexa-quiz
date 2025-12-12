@@ -29,3 +29,9 @@
 .score {
   font-size: 20rem;
 }
+
+@media (max-width: 600px) {
+  .score {
+    font-size: 5rem;
+  }
+}
