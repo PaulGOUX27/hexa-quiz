@@ -18,6 +18,7 @@ export function WebSocketContextProvider({ children }: PropsWithChildren) {
     "song:pause": [],
     "song:play": [],
     "song:resume": [],
+    "song:stop": [],
   });
   const pendingMessages = useRef<Message[]>([]);
 

@@ -25,7 +25,6 @@ export function SoundContextProvider({ children }: PropsWithChildren) {
     });
   }, [addListener]);
 
-  // TODO add song:stop
   // TODO add score on mobile
 
   useEffect(() => {
@@ -39,6 +38,13 @@ export function SoundContextProvider({ children }: PropsWithChildren) {
   useEffect(() => {
     return addListener("song:pause", async () => {
       songAudio.current?.pause();
+    });
+  }, [addListener]);
+
+  useEffect(() => {
+    return addListener("song:stop", async () => {
+      songAudio.current?.pause();
+      songAudio.current = null;
     });
   }, [addListener]);
 

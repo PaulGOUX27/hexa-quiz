@@ -12,8 +12,8 @@ function Song({
 }) {
   return (
     <li>
-      {title}
-      <button onClick={() => play(title)}>Play</button>
+      <span style={{ paddingRight: 8 }}>{title}</span>
+      <button onClick={() => play(title)}>Play ▶</button>
     </li>
   );
 }
@@ -37,17 +37,24 @@ export function Admin() {
     send({ type: "song:resume" });
   }, [send]);
 
+  const stop = useCallback(() => {
+    send({ type: "song:stop" });
+  }, [send]);
+
   return (
     <AdminContextProvider>
-      <div className="song-list">
-        <ol>
+      <div className="song-container">
+        <ol className="song-list">
           {songs.map((song) => (
             <Song key={song} title={song} play={play} />
           ))}
         </ol>
+        <div className="button-container">
+          <button onClick={pause}>Pause ⏸</button>
+          <button onClick={resume}>Resume ▶</button>
+          <button onClick={stop}>Stop ⏹</button>
+        </div>
       </div>
-      <button onClick={pause}>Pause</button>
-      <button onClick={resume}>Resume</button>
     </AdminContextProvider>
   );
 }

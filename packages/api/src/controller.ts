@@ -51,6 +51,7 @@ export class Controller {
 				case "song:pause":
 				case "song:play":
 				case "song:resume":
+				case "song:stop":
 					this.communicator.sendToMainScreen(parsedData.data);
 					break;
 				default:

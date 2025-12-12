@@ -1,3 +1,22 @@
+.song-container {
+    display: flex;
+    flex-direction: row;
+    gap: 16px
+}
+
 .song-list {
     width: fit-content;
+}
+
+.song-list * {
+    padding-top: 4px;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex-grow: 1;
+    align-items: start;
+    padding: 24px;
 }

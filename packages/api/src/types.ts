@@ -9,40 +9,35 @@ export const BuzMessageSchema = z.object({
 	type: z.literal("buz"),
 	team: TeamEnumSchema,
 });
-export type BuzMessage = z.infer<typeof BuzMessageSchema>;
 
 export const ResetBuzSchema = z.object({ type: z.literal("resetBuzzer") });
-export type ResetBuz = z.infer<typeof ResetBuzSchema>;
 
 export const ScoreMessageSchema = z.object({
 	type: z.literal("score"),
 	team: TeamEnumSchema.nullable(),
 	value: z.int(),
 });
-export type ScoreMessage = z.infer<typeof ScoreMessageSchema>;
 
 export const RegisterMainScreenMessageSchema = z.object({
 	type: z.literal("registerMainScreen"),
 });
-export type RegisterMainScreenMessage = z.infer<
-	typeof RegisterMainScreenMessageSchema
->;
 
 export const SongPlayMessageSchema = z.object({
 	type: z.literal("song:play"),
 	title: z.string(),
 });
-export type SongPlayMessage = z.infer<typeof SongPlayMessageSchema>;
 
 export const SongPauseMessageSchema = z.object({
 	type: z.literal("song:pause"),
 });
-export type SongPauseMessage = z.infer<typeof SongPauseMessageSchema>;
 
 export const SongResumeMessageSchema = z.object({
 	type: z.literal("song:resume"),
 });
-export type SongResumeMessage = z.infer<typeof SongResumeMessageSchema>;
+
+export const SongStopMessageSchema = z.object({
+	type: z.literal("song:stop"),
+});
 
 export const MessageSchema = z.discriminatedUnion("type", [
 	BuzMessageSchema,
@@ -52,6 +47,7 @@ export const MessageSchema = z.discriminatedUnion("type", [
 	SongPlayMessageSchema,
 	SongPauseMessageSchema,
 	SongResumeMessageSchema,
+	SongStopMessageSchema,
 ]);
 export type Message = z.infer<typeof MessageSchema>;
 
@@ -73,17 +69,14 @@ export const SongPlayResponseSchema = z.object({
 	type: z.literal("song:play"),
 	title: z.string(),
 });
-export type SongPlayResponse = z.infer<typeof SongPlayResponseSchema>;
 
 export const SongPauseResponseSchema = z.object({
 	type: z.literal("song:pause"),
 });
-export type SongPauseResponse = z.infer<typeof SongPauseResponseSchema>;
 
 export const SongResumeResponseSchema = z.object({
 	type: z.literal("song:resume"),
 });
-export type SongResumeResponse = z.infer<typeof SongResumeResponseSchema>;
 
 export const ResponseSchema = z.discriminatedUnion("type", [
 	ScoreResponseSchema,
@@ -91,5 +84,6 @@ export const ResponseSchema = z.discriminatedUnion("type", [
 	SongPlayResponseSchema,
 	SongPauseResponseSchema,
 	SongResumeResponseSchema,
+	SongStopMessageSchema,
 ]);
 export type Response = z.infer<typeof ResponseSchema>;

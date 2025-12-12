@@ -12,6 +12,12 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  --gray-darker: #202020;
+  --gray-dark: #606060;
+  --gray: rgb(128, 128, 128);
+  --gray-light: #a0a0a0;
+  --gray-lighter: #e0e0e0;
+
   --blue-darker: hsl(210, 90%, 40%);
   --blue-dark: hsl(210, 90%, 55%);
   --blue: hsl(210, 90%, 60%);
@@ -47,6 +53,17 @@ h1 {
   line-height: 1.1;
 }
 
+button {
+  border-radius: 8px;
+  padding: 8px;
+  min-width: 100px;
+  border: 1px solid var(--gray-dark);
+  background-color: var(--gray-lighter);
+}
+button:hover {
+  background-color: var(--gray-light);
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -54,8 +71,5 @@ h1 {
   }
   a:hover {
     color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
   }
 }
